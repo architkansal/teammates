@@ -3,6 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="jsIncludes">
   <script type="text/javascript" src="/js/index.js"></script>
+  <script>
+    var url = "https://www.youtube.com/embed/mDtfmNmRwBM?autoplay=1&rel=0";
+    $("#myModal").on('hide.bs.modal', function (e) {
+      $("#myModal iframe").attr("src", '');
+    });  
+    $("#myModal").on('show.bs.modal', function(e){
+        $("#myModal iframe").attr('src', url);
+    });
+  </script>
 </c:set>
 <t:staticPage jsIncludes="${jsIncludes}" currentPage="index">
   <div id="browserMessage" style="display: none;"></div>
@@ -19,7 +28,7 @@
     </h2>
     <div class="row">
       <div class="margin-bottom-10px col-xs-10 col-sm-5 col-xs-offset-1 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-3">
-        <a class="btn btn-default btn-block" href="https://www.youtube.com/embed/mDtfmNmRwBM?autoplay=1&rel=0" target="_blank">
+        <a class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal">
           <span class="glyphicon glyphicon-film" aria-hidden="true"></span> Video Tour
         </a>
       </div>
@@ -28,6 +37,22 @@
       </div>
     </div>
   </main>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Teammates Video Tour</h4>
+        </div>
+        <div class="modal-body">
+          <iframe width="854" height="510" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <img class="center-block img-responsive" id="raisedEdge" src="images/raised-edge.png">
 
